@@ -1,12 +1,12 @@
-п»ї#include "utmatrix.h"
+#include "utmatrix.h"
 #include <gtest.h>
 
-// ТИПИЗИРОВАННЫЕ ТЕСТЫ
+// РўРРџРР—РР РћР’РђРќРќР«Р• РўР•РЎРўР«
 // https://github.com/google/googletest/blob/master/googletest/docs/AdvancedGuide.md#typed-tests
 // sample: https://github.com/google/googletest/blob/master/googletest/samples/sample6_unittest.cc
 
-// СПОСОБ 1
-// типизированный класс
+// РЎРџРћРЎРћР‘ 1
+// С‚РёРїРёР·РёСЂРѕРІР°РЅРЅС‹Р№ РєР»Р°СЃСЃ
 template <class T>
 class MatrixTest : public testing::Test {
  protected:
@@ -33,12 +33,12 @@ public:
   virtual ~MatrixTest() {}
 };
 
-// список типов, которые хотим протестировать
+// СЃРїРёСЃРѕРє С‚РёРїРѕРІ, РєРѕС‚РѕСЂС‹Рµ С…РѕС‚РёРј РїСЂРѕС‚РµСЃС‚РёСЂРѕРІР°С‚СЊ
 typedef ::testing::Types<int, double> MyTypes;
-// св¤зываем класс и типы
+// СЃРІВ¤Р·С‹РІР°РµРј РєР»Р°СЃСЃ Рё С‚РёРїС‹
 TYPED_TEST_CASE(MatrixTest, MyTypes);
 
-// тесты
+// С‚РµСЃС‚С‹
 TYPED_TEST(MatrixTest, can_add)
 {
   EXPECT_EQ(m3, m1 + m2);
@@ -50,16 +50,16 @@ TYPED_TEST(MatrixTest, can_substract)
 }
 
 //----------------------------------------------------------------------------------------------
-// СПОСОБ 2
-// типизированный класс (здесь - такой же, как предыдущий)
+// РЎРџРћРЎРћР‘ 2
+// С‚РёРїРёР·РёСЂРѕРІР°РЅРЅС‹Р№ РєР»Р°СЃСЃ (Р·РґРµСЃСЊ - С‚Р°РєРѕР№ Р¶Рµ, РєР°Рє РїСЂРµРґС‹РґСѓС‰РёР№)
 template <class T>
 class MatrixTest2 : public MatrixTest<T> {
 };
 
-// что будем тестировать
+// С‡С‚Рѕ Р±СѓРґРµРј С‚РµСЃС‚РёСЂРѕРІР°С‚СЊ
 TYPED_TEST_CASE_P(MatrixTest2);
 
-// тесты
+// С‚РµСЃС‚С‹
 TYPED_TEST_P(MatrixTest2, can_add)
 {
   EXPECT_EQ(m3, m1 + m2);
@@ -70,14 +70,14 @@ TYPED_TEST_P(MatrixTest2, can_substract)
   EXPECT_EQ(m1, m3 - m2);
 }
 
-// перечисл¤ем все тесты
+// РїРµСЂРµС‡РёСЃР»В¤РµРј РІСЃРµ С‚РµСЃС‚С‹
 REGISTER_TYPED_TEST_CASE_P(
-  MatrixTest2, // им¤ класса
-  can_add, can_substract); // тесты
+  MatrixTest2, // РёРјВ¤ РєР»Р°СЃСЃР°
+  can_add, can_substract); // С‚РµСЃС‚С‹
 
-// перечисл¤ем все типы
+// РїРµСЂРµС‡РёСЃР»В¤РµРј РІСЃРµ С‚РёРїС‹
 typedef ::testing::Types<int, double> MyTypes2;
 
-INSTANTIATE_TYPED_TEST_CASE_P(ParameterizedMatrix, // название реализации
-                              MatrixTest2,         // название тестируемой группы
-                              MyTypes2);           // название типов 
+INSTANTIATE_TYPED_TEST_CASE_P(ParameterizedMatrix, // РЅР°Р·РІР°РЅРёРµ СЂРµР°Р»РёР·Р°С†РёРё
+                              MatrixTest2,         // РЅР°Р·РІР°РЅРёРµ С‚РµСЃС‚РёСЂСѓРµРјРѕР№ РіСЂСѓРїРїС‹
+                              MyTypes2);           // РЅР°Р·РІР°РЅРёРµ С‚РёРїРѕРІ 
