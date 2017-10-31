@@ -1,4 +1,4 @@
-#include "utmatrix.h"
+п»ї#include "utmatrix.h"
 #include <gtest.h>
 
 // ТИПИЗИРОВАННЫЕ ТЕСТЫ
@@ -35,7 +35,7 @@ public:
 
 // список типов, которые хотим протестировать
 typedef ::testing::Types<int, double> MyTypes;
-// связываем класс и типы
+// св¤зываем класс и типы
 TYPED_TEST_CASE(MatrixTest, MyTypes);
 
 // тесты
@@ -70,12 +70,12 @@ TYPED_TEST_P(MatrixTest2, can_substract)
   EXPECT_EQ(m1, m3 - m2);
 }
 
-// перечисляем все тесты
+// перечисл¤ем все тесты
 REGISTER_TYPED_TEST_CASE_P(
-  MatrixTest2, // имя класса
+  MatrixTest2, // им¤ класса
   can_add, can_substract); // тесты
 
-// перечисляем все типы
+// перечисл¤ем все типы
 typedef ::testing::Types<int, double> MyTypes2;
 
 INSTANTIATE_TYPED_TEST_CASE_P(ParameterizedMatrix, // название реализации
